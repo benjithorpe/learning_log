@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-# import os
+import os
 
 import django_heroku
 
@@ -27,9 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6%y7og6g-$@igel#gxt3kwi^8r6=_ap4=wh&+0%m8p^9)xw+5x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = ["learning-logs-32.herokuapp.com", "127.0.0.1"]
+if os.environ.get("DEBUG") == "TRUE":
+    DEBUG = True
+elif os.environ.get("DEBUG") == "FALSE":
+    DEBUG = False
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
